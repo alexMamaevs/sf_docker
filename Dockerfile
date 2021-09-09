@@ -1,5 +1,6 @@
 FROM ubuntu
-RUN apt-get update
-RUN apt-get install -y nodejs
-COPY server.js /
-CMD ["/usr/bin/node", "server.js"]
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y
+RUN apt-get install -y nodejs git
+RUN git clone https://github.com/alexMamaevs/sf_docker
+CMD ["/usr/bin/node", "/sf_docker/server.js"]
